@@ -17,7 +17,7 @@ export default {
 
 <style scoped>
    div h4{
-       width: 100%;
+       width:100%;
        font-size:16px;
        color: silver;
        position: absolute;

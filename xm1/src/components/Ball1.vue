@@ -1,98 +1,137 @@
 <template>
 <div id="big">
      <div id="topp">
-           <div class="container">
-     <div class="cube cube--1">
-        <div class="side side--back">
-            <div class="side__inner"></div>
+        <div class="container">
+              <div class="cube cube--1">
+                 <div class="side side--back">
+                     <div class="side__inner"></div>
+                 </div>
+                 <div class="side side--left">
+                     <div class="side__inner"></div>
+                 </div>
+                 <div class="side side--right">
+                     <div class="side__inner"></div>
+                 </div>
+                 <div class="side side--top">
+                     <div class="side__inner"></div>
+                 </div>
+                 <div class="side side--bottom">
+                     <div class="side__inner"></div>
+                 </div>
+                 <div class="side side--front">
+                     <div class="side__inner"></div>
+                 </div>
+               </div>
+           <div class="cube cube--2">
+              <div class="side side--back">
+                  <div class="side__inner"></div>
+              </div>
+              <div class="side side--left">
+                  <div class="side__inner"></div>
+              </div>
+              <div class="side side--right">
+                  <div class="side__inner"></div>
+              </div>
+              <div class="side side--top">
+                  <div class="side__inner"></div>
+              </div>
+              <div class="side side--bottom">
+                  <div class="side__inner"></div>
+              </div>
+              <div class="side side--front">
+                  <div class="side__inner"></div>
+              </div>
+           </div>
+           <div class="cube cube--3">
+               <div class="side side--back">
+                   <div class="side__inner"></div>
+               </div>
+               <div class="side side--left">
+                   <div class="side__inner"></div>
+               </div>
+               <div class="side side--right">
+                   <div class="side__inner"></div>
+               </div>
+               <div class="side side--top">
+                   <div class="side__inner"></div>
+               </div>
+               <div class="side side--bottom">
+                   <div class="side__inner"></div>
+               </div>
+               <div class="side side--front">
+                   <div class="side__inner"></div>
+               </div>
+           </div>
         </div>
-        <div class="side side--left">
-            <div class="side__inner"></div>
-        </div>
-        <div class="side side--right">
-            <div class="side__inner"></div>
-        </div>
-        <div class="side side--top">
-            <div class="side__inner"></div>
-        </div>
-        <div class="side side--bottom">
-            <div class="side__inner"></div>
-        </div>
-        <div class="side side--front">
-            <div class="side__inner"></div>
-        </div>
-    </div>
-    <div class="cube cube--2">
-        <div class="side side--back">
-            <div class="side__inner"></div>
-        </div>
-        <div class="side side--left">
-            <div class="side__inner"></div>
-        </div>
-        <div class="side side--right">
-            <div class="side__inner"></div>
-        </div>
-        <div class="side side--top">
-            <div class="side__inner"></div>
-        </div>
-        <div class="side side--bottom">
-            <div class="side__inner"></div>
-        </div>
-        <div class="side side--front">
-            <div class="side__inner"></div>
-        </div>
-    </div>
-    <div class="cube cube--3">
-        <div class="side side--back">
-            <div class="side__inner"></div>
-        </div>
-        <div class="side side--left">
-            <div class="side__inner"></div>
-        </div>
-        <div class="side side--right">
-            <div class="side__inner"></div>
-        </div>
-        <div class="side side--top">
-            <div class="side__inner"></div>
-        </div>
-        <div class="side side--bottom">
-            <div class="side__inner"></div>
-        </div>
-        <div class="side side--front">
-            <div class="side__inner"></div>
-        </div>
-    </div>
-</div>
+        <i class="aa" @click="fn()">匹配  (请双击)</i>
      </div>
       <div> <audio :src="'static/img/mathing.mp3'" autoplay loop id="music"></audio></div>
-      <p class="e"><i class="ww">连接中</i><img  src="static/img/jz.gif" alt=""></p>
+        <p class="e">
+           <i class="ww" v-show="show">连接中</i>
+           <img v-show="show" src="static/img/jz.gif" alt="">
+        </p>
      </div>
     
 </template>
 
 <script>
 export default {
-    name:"Ball1"
+    name:"Ball1",
+    data(){
+        return {
+            show:false
+        }
+    },
+     methods:{
+        fn(){
+          this.show = true
+              const TIME_COUNT =2;
+              if(!this.timer){
+                  this.count = TIME_COUNT;
+                  this.show = false;
+                  this.timer = setInterval(()=>{
+                       if(this.count > 0 && this.count <= TIME_COUNT){
+                           this.count--;
+                       }else{
+                           this.show = true;
+                           clearInterval(this.timer);
+                           this.timer = null;
+                           //跳转的页面写在此处
+                           this.$router.push({
+                               path: '/Liaotian/'
+                           });
+                       }
+                     },1000)
+              }
+        }
+      }
 }
 </script>
 
 <style scoped>
+.aa{
+      font-size:22px;
+      position: absolute;
+      bottom:200px;
+      left:150px;
+      color: rgb(250, 186, 186);
+}
 .e{
     color: #0CC0BF;
 
 }
-i{
+.ww{
     font-size: 18px;
     position: absolute;
-    bottom: 146px;
+    bottom: 120px;
     left: 70px;
 }
 
 .e>img{
     width: 230px;
-    height: 150px;
+    height:100px;
     position: absolute;
-    bottom: 90px;
+    bottom:85px;
     left: 130px;
 }
 *{
@@ -103,15 +142,15 @@ i{
 }
 #big{
    
-      width: 414px;
+      width: 100%;
       height: 670px;
     background-color: #3B2D47;
 }
 
 .container {
-position: absolute;
-top: 200px;
-left: 140px;
+    position: absolute;
+    top: 160px;
+    left: 140px;
     width: 10em;
     height: 10em;
     -webkit-transform-style: preserve-3d;

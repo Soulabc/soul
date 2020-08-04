@@ -1,13 +1,13 @@
 <template>
     <div class="box">
         <div class="head">
-            <span><img :src="'/static/img/log2.png'"/></span>
+            <span><router-link :to="'/My/'"><img :src="'/static/img/agwas.jpg'"/></router-link></span>
             <div class="nav">
-                <div v-for="(type,index) in types" :key="index" >
+                <div v-for="(type,index) in types" :key="index">
                     <router-link :to="'/Second/TypeList/'+type">{{type}}</router-link>
                 </div>
             </div>
-            <p><i class="el-icon-service"></i></p>
+            <p><router-link :to="'/Music/'"><i class="el-icon-service"></i></router-link></p>
         </div>
            <div class="sou">
                <input type="text" name="" placeholder="大家都在搜： 哈哈哈" value="">
@@ -19,7 +19,6 @@
 </template>
 
 <script>
-
 export default {
     name:"Type",
     data(){
@@ -27,16 +26,17 @@ export default {
             types:['关注','推荐','最新']
         }
     },
-    // created(){
-        // this.$router.push('/ShuJia/BookTypeList/'+this.types[0]);
-    // } 
+    created(){
+        this.$router.push('/Second/TypeList/'+this.types[0]);
+    } 
 }
 </script>
 
 <style scoped>
 .sou input{
-    width: 360px;
+    width: 350px;
     margin: 20px 15px;
+    margin-bottom:5px;
     background: rgb(247, 244, 244);
     height: 30px;
     border-radius: 30px;
@@ -51,21 +51,27 @@ a{
     color: black;
 }
 .head{
-   width: 430px;
+   /* position: absolute; */
+   width:100%;
    /* background: red; */
-   height: 50px;
+   height: 80px;
    display: flex;
    justify-content: space-around;
    border-bottom: 1px solid rgb(212, 203, 203);
-   padding-bottom: 20px;
+   /* padding-bottom: 20px; */
    
 }
 .head span{
     margin-top: 15px;
 }
+.head span img{
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+}
 .head p{
-    margin-top: 15px;
-    font-size: 20px;
+    margin-top:20px;
+    font-size: 25px;
 }
 .box .nav{
     height:35px;
@@ -75,9 +81,9 @@ a{
     text-align: center;
     line-height: 35px;
     font-size: 20px;
-    margin: 10px 20px;
+    margin: 20px 20px;
 }
-/* .box .nav:hover{font-size: 25px;} */
+/* .box .nav:hover{font-size: 25px;color: red;} */
 .box .nav div{
     width:80px;
     height: 100%;

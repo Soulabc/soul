@@ -3,12 +3,16 @@
         <div class="footer"> 
             <ul>
                 <li>
-                 <i class="el-icon-bangzhu"></i>
-                 <p><router-link :to="'/First/'">星球</router-link></p>
+                    <router-link :to="'/First/'">
+                      <i class="el-icon-bangzhu"></i>
+                      <p>星球</p>
+                    </router-link>
                 </li>
                 <li>
-                     <i class="el-icon-view"></i>
-                     <p><router-link :to="'/Second/'">广场</router-link></p>
+                     <router-link :to="'/Second/'">
+                        <i class="el-icon-view"></i>
+                        <p>广场</p>
+                     </router-link>
                 </li>
                 <li>
                     <span>
@@ -16,12 +20,16 @@
                     </span>
                 </li>
                 <li>
-                    <i class="el-icon-chat-dot-round"></i>
-                    <p><router-link :to="'/Liaotian/'">聊天</router-link></p>
+                    <router-link :to="'/Liaotian/'">
+                        <i class="el-icon-chat-dot-round"></i>
+                        <p>聊天</p>
+                    </router-link>
                 </li>
                 <li>
-                     <i class="el-icon-s-custom"></i>
-                     <p><router-link :to="'/My/'">我的</router-link></p>
+                     <router-link :to="'/My/'">
+                         <i class="el-icon-s-custom"></i>
+                         <p>我的</p>
+                     </router-link>
                 </li>
             </ul>                                   
         </div>
@@ -31,11 +39,6 @@
 <script>
 export default {
    name:"Footer",
-   data:function(){
-       return{
-
-       }
-   }
 }
 </script>
 
@@ -52,7 +55,7 @@ a{
     color: blue;
 }
 /* a:visited{ */
-     /* color: white; */
+     /* color: blue; */
 /* } */
     ul{
         list-style: none;
@@ -61,11 +64,12 @@ a{
             z-index: 100;
             position:fixed;
             bottom:0px;
-            width:434px;
+            width:100%;
+            background: rgb(250, 242, 242);
     }
       .footer ul{
            /* margin-top: 50px; */
-           width:434px;
+           width:100%;
            display: flex;
            justify-content: space-around;
       }
@@ -74,9 +78,9 @@ a{
           font-size: 30px;
           
       }
-      .footer ul li:hover{
-            color: rgb(106, 226, 247);
-      }
+      /* .footer ul li:hover{ */
+            /* color: rgb(106, 226, 247); */
+      /* } */
       .footer ul p{
           margin-top: 5px;
       }

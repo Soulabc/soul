@@ -13,11 +13,7 @@
 <script>
 export default {
      name:"RegHead",
-      data:function(){
-          return{
 
-          }
-      }
 }
 </script>
 
@@ -33,20 +29,17 @@ export default {
           margin: 0 auto;
       }
       div h1{
-         /* margin-top:50px; */
+         padding-top:50px;
          text-align: center;
          font-size: 50px;
       }
       div ul{
-          width: 314px;
+          width:350px;
           display: flex;
-          margin: 20px 60px;
+          margin-top: 20px;
+          margin-left: 60px;
           text-align: center;
       }
-      /* div ul li{ */
-          /* width: 100px; */
-          /* height: 30px; */
-      /* } */
       div p{
           display: inline-block;  
           width: 40px;

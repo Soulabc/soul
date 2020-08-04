@@ -1,7 +1,7 @@
 <template>
        <div id="app">
          <div id="top">
-                <router-link :to="'../First'">
+                <router-link :to="'/First'">
                     <img class="imgss" :src="'/static/img/logocopy.png'"/>
                 </router-link>
                  
@@ -12,8 +12,8 @@
              <p class="pp">治愈聊天，有趣温暖真实表达</p>
         </div>
         <div id="imgs">
-             <router-link :to="'/Reg1/'">  <span>注册</span></router-link>
-             <router-link :to="'/Registered/'"> <span>登录</span></router-link>
+             <router-link :to="'/Reg'"><span>注册</span></router-link>
+             <router-link :to="'/Log'"><span>登录</span></router-link>
         </div>
        </div>
 </template>
@@ -86,7 +86,7 @@ export default {
         }
         
         #tops {
-            width: 375px;
+            width:100%;
             height: 140px;
             margin-top: 220px;
             margin-left: 20px;

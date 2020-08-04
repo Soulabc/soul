@@ -8,68 +8,88 @@
               </li>
               <i class="i"><img :src="'/static/img/log2.png'"></i>
               <li>
-                  <select id="sel">    
-                      <option value=""> 筛选</option>
-                      <option  value="男">男</option>
-                      <option value="女">女</option>
+                  <select id="sel" @click="fnn()" v-model="sex">    
+                      <option >筛选</option>
+                      <option value="classA" @click="fnn()">男</option>
+                      <option value="classB">女</option>
                   </select>
               </li>
           </ul>
       </div>
       <div id="div1">
-          <!-- <router-link :to="'/Liaotian/'">
-          <a >0121 <br> <span></span></a>
-           </router-link> -->
-          <a >0121 <br> <span></span></a>
-          <a >0121 <br> <span></span></a>
-          <a >0121 <br> <span></span></a>
-          <a >0121 <br> <span></span></a>
-          <a >0121 <br> <span></span></a>
-          <a >0121 <br> <span></span></a>
-          <a >0121 <br> <span></span></a>
-          <a >0121 <br> <span></span></a>
-          <a >0121 <br> <span></span></a>
-          <a >0121 <br> <span></span></a>
-          <a >0121 <br> <span></span></a>
-          <a >0121 <br> <span></span></a>
-          <a >0121 <br> <span></span></a>
-          <a >0121 <br> <span></span></a>
-          <a >0121 <br> <span></span></a>
-          <a >0121 <br> <span></span></a>
-          <a >0121 <br> <span></span></a>
-          <a >0121 <br> <span></span></a>
-          <a >0121 <br> <span></span></a>
-          <a >0121 <br> <span></span></a>
-          <a >0121 <br> <span></span></a>
-          <a >0121 <br> <span></span></a>
-          <a >0121 <br> <span></span></a>
-          <a >0121 <br> <span></span></a>
-          <a >0121 <br> <span></span></a>
-          <a >0121 <br> <span></span></a>
-          <a >0121 <br> <span></span></a>
-          <a >0121 <br> <span></span></a>
-          <a >0121 <br> <span></span></a>
+          <a @click="jump()" v-for="(data,index) in datas" :key="index">{{data}}<br>
+          <span :class=sex></span></a>
       </div>
       <audio :src="'static/img/link.mp3'" autoplay loop id="music"></audio>
-      <!--  底部 -->
-      <!-- <div id="bott"></div> -->
-      <!-- </div> -->
       <p id="p">当前在线<i>009527</i>人</p>
     </div>
 </template>
 
 <script>
-
+import axios from "axios";
 import litk from "../../js/lrtk.js"
 
 export default {
-   name:"Ball",                              
+   name:"Ball", 
+//    props:["type"], 
+   data:function(){
+       return{
+           sex:"筛选",
+           datas:[],
+        //    data:[]
+       }
+   },
+      methods:{
+         fnn:function(gender){
+             console.log(gender)
+            //    axios({
+                    // url:"planet/gender/",
+                    // params:{
+                    //    "type":this.type
+                    //  }
+            //    })
+            //    .then(res=>{this.datas=res.data;
+                            // console.log(res.data)
+                    // }) 
+          } ,
+         jump(){
+               this.$router.push({path:'/Liaotian'})
+            }                        
+      },       
+     created(){
+           axios({
+               url:"planet/person/",
+               
+           })
+           .then(res=>{
+               let arr = res.data.data;
+            //    console.log(res.data.data);
+            //    console.log(arr);
+               for(let i=0;i<arr.length;i++){
+                //    console.log(arr[i].nick_name);
+                    this.datas.push(arr[i].nick_name)
+                    // console.log(arr[i])
+                    // console.log(this.datas)
+                 }              
+            })       
+         },
+        //   fnn(){
+            // axios({
+            // url:"planet/gender/",
+            // params:{
+            //    "type":this.type
+            //  }
+    //    })
+    //    .then(res=>{
+                // this.gender=res.data
+                // console.log(res.data)
+                // })
 }
 </script>
 
 <style scoped>
-#div1>a>span:nth-child(even){
-  background-color: rgb(247, 17, 17);
+span{
+  background-color: rgb(90, 116, 172);
 }
 #p{
     color:white;
@@ -79,13 +99,13 @@ export default {
     color: #64DED8;
     font-size: 14px;
 }#p>i{
-    color: red;
+     color: red;
      font-size: 16px;
      font-weight: bold;
 }
 
 #box{
-    width:434px;
+    width:100%;
     /* background: #030202; */
     background-color: #030202;
 }
@@ -98,31 +118,28 @@ export default {
 ul {
     list-style: none;
 }
-.span {
-    background: pink;
-}
+/* .span { */
+    /* background: pink; */
+/* } */
 
-.spaa {
-    background: skyblue;
+.classA {
+    background: blue;
 }
-
-span {
+.classB {
+    background: red;
+}
+span{
     display: inline-block;
     border-radius: 80%;
     width: 12px;
     height: 12px;
     margin-left: 15px;
     margin-top: -5px;
-    background-color: hotpink;
 }
-
-
-/* 筛选 */
-
 .i {
     position: absolute;
     top: 15px;
-    right: 80px;   
+    right: 100px;   
 }
 .i img{
       width: 20px;
@@ -139,16 +156,14 @@ span {
     margin-top: 15px;
     font-size: 16px;
 }
-
 #div1 {
-    height:655px;
-    width: 434px;
+    height:625px;
+    width: 100%;
     position: relative;
     margin: 45px auto;
     opacity: 0.5;
     margin-top: -15px;
 }
-
 #div1 a {
     position: absolute;
     top: 10px;
@@ -161,11 +176,9 @@ span {
     font-weight: bold;
 }
 
-
 /* 头部 */
-
 #top {
-    width: 434px;
+    width: 100%;
     height:60px;
     background-color: #12121F;
 }
@@ -198,20 +211,4 @@ span {
     line-height: 50px;
     margin-left: -42px;
 }
-
-
-/* 底部 */
-
-#bott {
-    width: 434px;
-    height: 100px;
-    background-color: rgb(247, 17, 17);
-}
-
-/* #tops { */
-    /* width: 100%; */
-    /* height: 800px; */
-    /* margin: 0 auto; */
-    /* border-image: url("./img/imgs.png"); */
-/* } */
 </style>

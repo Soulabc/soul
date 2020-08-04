@@ -1,113 +1,62 @@
 <template>
   <div>
-    <!-- <div v-for="user in users" :key="user.id">
-      <div class="head">
-        <div class="head-img">
-          <img :src="users['data'][1].head_img" />
-        </div>
-        <div class="head-p">
-          <strong>昵称 :</strong>
-          <i>{{users['data'][3]['nick_name']}}</i>
-          <br />
-          <strong>个性签名 :</strong>
-          <i>{{users['data'][1]['sign']}}</i>
-        </div>
-      </div>
-      <div class="body">
-        <i>
-          <span>{{users['data'][1]['focus_num']}}</span>
-          <br />关注
-        </i>
-        <i>
-          <span>{{users['data'][1]['fans_num']}}</span>
-          <br />被关注
-        </i>
-        <i>
-          <span>{{users['data'][1]['look_num']}}</span>
-          <br />看过我
-        </i>
-      </div>
-      <div class="foot">
-        <ul>
-          <li>
-            <span class="q">昵称 :</span>
-            <i>{{users['data'][1]['focus_num']}}</i>
-          </li>
-          <li>
-            <span class="q">性别 :</span>
-            <i>{{users['data'][1]['gender']}}</i>
-            <i class="el-icon-male" id="nan"></i>
-            <i class="el-icon-female" id="nv"></i>
-          </li>
-          <li>
-            <span class="q">个性签名 :</span>
-            <i>{{users['data'][1]['sign']}}</i>
-          </li>
-        </ul>
-      </div>
-      <div class="out">
-        <button>退出</button>
-      </div>
-      <div class="in"></div>
-    </div> -->
- <div>
+    <div>
     <div v-for="user in users" :key="user.id">
-      <div class="head">
-        <div class="head-img">
-          <img :src="''" />
+        <div class="head">           
+              <img :src="'/static/img/1.jpg'">
+           <div class="head-p">
+             <p>昵称 : {{user.nickname}}</p>
+             <p>个性签名 :  {{user.Sign}}</p>
+           </div>
+           <!-- <img class="img" src="/static/img/bg.jpg"> -->
         </div>
-        <div class="head-p">
-          <strong>昵称 :</strong>
-          <i>{{user.nickname}}</i>
-          <br />
-          <strong>个性签名 :</strong>
-          <i>{{user.Sign}}</i>
-        </div>
-      </div>
       <div class="body">
         <i>
-        <router-link :to="''">  <span>{{user.like}}</span>
-          <br />关注</router-link>
+        <router-link :to="'/Second/'"><span>{{user.like}}</span>
+          <br/>关注</router-link>
         </i>
         <i>
-        <router-link :to="''">  <span>{{user.liked}}</span>
-          <br />被关注</router-link>
+        <router-link :to="'jjj'">  <span>{{user.liked}}</span>
+          <br/>被关注</router-link>
         </i>
         <i>
-        <router-link :to="''">  <span>{{user.look}}</span>
-          <br />看过我</router-link>
+        <router-link :to="'erre'">  <span>{{user.look}}</span>
+          <br/>看过我</router-link>
         </i>
       </div>
       <div class="foot">
         <ul>
-          <li>
-            <span class="q">昵称 :</span>
-            <i>{{user.nickname}}</i>
-          </li>
           <li>
             <span class="q">性别 :</span>
             <i>{{user.sex}}</i>
             <i class="el-icon-male" id="nan"></i>
-            <i class="el-icon-female" id="nv"></i>
+            <!-- <i class="el-icon-female" id="nv"></i> -->
           </li>
           <li>
-            <span class="q">个性签名 :</span>
+            <span class="q">电子邮箱:</span>
             <i>{{user.Sign}}</i>
           </li>
           <li>
-            <span class="q">最近状态 :</span>
+            <span class="q">最新状态 :</span>
             <i>{{user.Sign}}</i>
+          </li>
+          <li>
+             <span class="q">职业:</span>
+             <i>打酱油</i>
           </li>
         </ul>
       </div>
       <div class="out">
+        <router-link :to="'/Log/'">
         <button>退出</button>
+        </router-link>
       </div>
     
     </div>
  </div>
   </div>
 </template>
+
 
 <script>
 import axios from "axios";
@@ -119,21 +68,25 @@ export default {
       users: [],
     };
   },
-  methods() {
-    if (user.sex === "nan") {
-    }
-  },
+  // methods(){
+    // if((user.sex)==="男"){
 
+// }
+  // },
+  
   created() {
     axios({
-      // url: "soul/person/user/",
-       url: "http://localhost:3000/users",
+      url: "users",
     }).then((res) => (this.users = res.data));
   },
 };
 </script>
 
 <style scoped>
+a{
+  text-decoration: none;
+  color: rgb(148, 114, 114);
+}
 .q {
   margin-top: 5px;
   color: royalblue;
@@ -147,72 +100,80 @@ ul {
   height: 268px;
   background-color: white;
 }
-
 .head {
-  width: 44px;
-  height: 200px;
-  padding-top: 15%;
-  padding-left: 8.125rem;
+   /* margin: 50px auto; */
+   padding-top: 50px;
+   width: 100%;
+   height:210px;
+   text-align: center;
+   background-image: url("/static/img/bg.jpg");
 }
-.head div img {
-  width: 99.2px;
-  height: 100px;
-  border-radius: 50%;
-}
-.head > div {
+/* .head .img{ */
+   /* position: relative; */
+   /* width: 100%; */
+   /* height: 100px; */
+/* } */
+.head img {
+  display:block;
   width: 100px;
   height: 100px;
+  border-radius: 50%;
+  text-align: center;
+  margin-left: 40%;
 }
-.head-img {
-  margin-left: 36%;
+.head .head-p p{
+     margin:15px;
+     font-weight: bold;
 }
-.head .head-p {
-  width: 8.125rem;
-  padding-left: 20.8px;
+.head .head-p p:nth-child(2){
+  color: rgb(184, 179, 179);
 }
-
 .body {
-  width: 430px;
+  width:100%;
   height: 100%;
   font-size: 20px;
   display: flex;
   background-color: white;
 }
-.body i:hover {
-  background-color:gray;
-  
+.body span{
+  display: inline-block;
+  margin:5px;
 }
 .body i {
   display: block;
   width: 144px;
   height: 40px;
-  margin-left: 6px;
   border-radius: 5%;
-  padding-top: 1%;
+  padding: 5px;
   text-align: center;
   color: rgb(68, 63, 63);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: bold;
-  margin-left: 30px;
+  margin-bottom: 10px;
 }
 .foot {
   width: 100%;
   height: 100%;
-  background-color: white;
+}
+.foot span {
+  display: inline-block;
+  width: 80px;
 }
 .foot li {
-  margin-left: 15%;
-  margin-top: 40px;
+  height:50px;
+  border-bottom: 1px solid rgb(126, 117, 117);
+  padding-left:10%;
+  line-height: 50px;
+  /* margin-top:30px; */
 }
-.foot li:nth-child(1) {
-  margin-top: 0px;
-}
+/* .foot li:nth-child(1) { */
+/* } */
 .foot li:nth-child(4) {
   padding-bottom: 10px;
 }
-.out {
-  margin-top: 10%;
-}
+/* .out { */
+  /* margin-top: 10%; */
+/* } */
 .out button {
   width: 50%;
   height: 40px;
@@ -221,15 +182,8 @@ ul {
   font-size: 15px;
   margin-left: 25%;
   border-radius: 5%;
-  margin-bottom: 20px;
-  background-color: white;
+  margin-bottom: 50px;
+  background-color: rgb(150, 150, 184);
 }
-i > span {
-  margin-top: -5px;
-  color: rgb(207, 52, 52);
-  font-weight: bold;
-  font-size: 16px;
-  text-align: center;
-  margin-left: 5px;
-}
+
 </style>

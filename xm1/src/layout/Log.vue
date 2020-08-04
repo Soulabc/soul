@@ -1,7 +1,7 @@
 <template>
 <div>
-   <RegHead/>
-   <Registered1/>
+      <RegHead/>
+      <Log1/>
       <RegFoot/>
     
 </div>
@@ -10,16 +10,16 @@
 <script>
 import RegHead from "../components/RegHead"
 import RegFoot from "../components/RegFoot"
-import Registered1 from "../components/Registered1"
+import Log1 from "../components/Log1"
 import axios from "axios"
 export default {
-  name: "Registered",
+  name: "Log",
   data: function () {
     return {};
   },
   methods: {},
   components:{
-    RegFoot,RegHead,Registered1
+    RegFoot,RegHead,Log1
   }
 };
 </script>

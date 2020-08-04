@@ -2,12 +2,12 @@
      <div>
        <!-- <div id="container"> -->
           <div class="header">
-              <span style="float: left;">Soul聊天界面</span>
+              <span style="float: left;">聊天界面</span>
             <span style="float: right;">{{houer}}:{{minutes}}</span>
           </div>
           <ul class="content">
               <li v-for="(item, index) in messageList" :key="index">
-                  <img :src="'/static/img/1.jpg'+(item.isSelf?'r.jpg':'l.jpg')" :class="'img'+(item.isSelf?'right':'left')">
+                  <img :src="'/static/img'+(item.isSelf?'r.jpg':'l.jpg')" :class="'img'+(item.isSelf?'right':'left')">
                   <!-- <img :src="'/static/img/1.jpg'"> -->
                   <span :class="'span'+(item.isSelf?'right':'left')">{{item.message}}</span>
               </li>
@@ -17,6 +17,8 @@
               <input id="text" type="text" placeholder="说点什么吧..." v-model="inputValue" @keyup.enter="chat">
               <!-- 给发送也绑定一个事件 -->
               <span id="btn" @click="chat">发送</span>
+              <p class="jia" @click="fn()"><i class="el-icon-plus"></i></p>
+              <p class="shi" @click="goPage('https://m.ovmeet.com:3000/login.html')" v-show="show">视频通话</p>
            </div>
      </div>
 </template>
@@ -27,7 +29,7 @@ export default {
      name:"Liaotian1",
      data:function(){
          return{
-
+              show:false,
             //输入内容,双向数据绑定
              inputValue: '',
              //聊天窗口内容
@@ -37,8 +39,14 @@ export default {
             //  seconds : (new Date()).getSeconds()
          }
      },
-      methods: {
-     chat() {
+      methods:{
+        goPage (url) {
+            window.location.href = url
+        },
+        fn(){
+            this.show = !this.show
+        },
+        chat() {
 
          // console.log(this.inputValue);
          // console.log(this);
@@ -57,7 +65,7 @@ export default {
              },
              // 注意使用箭头函数,不然里面的this会发生变化
              success: (obj) => {
-                 console.log(obj);
+                //  console.log(obj);
                  // 三.获取机器人接口内容,也将内容渲染到页面
                  this.messageList.push({
                      message: obj.text,
@@ -73,7 +81,7 @@ export default {
 </script>
 
 <style scoped>
-              * {
+     * {
           margin: 0;
           padding: 0;
           list-style: none;
@@ -81,8 +89,8 @@ export default {
       }
       
       #container {
-          width: 434px;
-          height: 780px;
+          width:350px;
+          height: 580px;
           background: #eee;
           margin: 80px auto 0;
           position: relative;
@@ -90,7 +98,7 @@ export default {
       }
       
       .header {
-          width:434px;
+          width:394px;
           background: #000;
           height: 40px;
           color: #fff;
@@ -100,23 +108,23 @@ export default {
       }
       /* .header span:nth-child(2){color: red;} */
       .footer {
-          width: 430px;
+          width: 394px;
           height: 50px;
           background: #666;
-          position: absolute;
-          bottom: 20px;
+          position: fixed;
+          bottom:66px;
           padding: 10px;
       }
       
       .footer input {
-          width: 360px;
+          width: 250px;
           height: 45px;
           outline: none;
           font-size: 20px;
           text-indent: 10px;
           position: absolute;
           border-radius: 6px;
-          right: 80px;
+          right: 150px;
       }
       
       .footer span {
@@ -129,10 +137,31 @@ export default {
           cursor: pointer;
           text-align: center;
           position: absolute;
-          right: 10px;
+          right: 80px;
           border-radius: 6px;
       }
-      
+      .footer .jia{
+          width: 50px;
+          height: 50px;
+          background: #ccc;
+          font-size:30px;
+          text-align: center;
+          line-height: 50px;
+          margin-left: 340px;
+          border-radius: 50%;
+      }
+      .footer .shi{
+            width:40px;
+            height:40px;
+            background: #ccc;
+            margin-left: 342px;
+            padding-left: 5px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            position: absolute;
+            bottom:70px;
+            border-radius:8px;
+        }
       .footer span:hover {
           color: #fff;
           background: #999;
@@ -157,16 +186,15 @@ export default {
       
       .content {
           font-size: 20px;
-          width: 435px;
-          height: 662px;
+          width:413px;
+          height: 560px;
           overflow: auto;
-          padding: 5px;
       }
       
       .content li {
           margin-top: 10px;
-          padding-left: 10px;
-          width: 412px;
+          padding:8px;
+          width:395px;
           display: block;
           clear: both;
           overflow: hidden;

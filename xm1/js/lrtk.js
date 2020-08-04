@@ -1,12 +1,12 @@
-// function toggleSound() {
-    // var music = document.getElementById("vd");  
-    // console.log(music);
-    // console.log(music.paused);
-    // if (music.paused) { 
-        // music.paused = false;
-        // music.play()
-    // }
-// }
+function toggleSound() {
+    var music = document.getElementById("vd");  
+    console.log(music);
+    console.log(music.paused);
+    if (music.paused) { 
+        music.paused = false;
+        music.play()
+    }
+}
 // setInterval("toggleSound()", 1);
 var radius = 150;
 var dtr = Math.PI / 180;

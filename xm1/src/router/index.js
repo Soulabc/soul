@@ -10,13 +10,13 @@ import Second from "../layout/Second"
 import TypeList from "../components/TypeList"
 import Liaotian from "../layout/Liaotian"
 import My from "../layout/My"
-import axios from "axios"
-import Reg1 from "../layout/Reg1"
-import Login from "../layout/Login"
-import Registered from "../layout/Registered"
-import Vuex from 'vuex'
+import Notfound from "../layout/Notfound"
+import Log from "../layout/Log"
+import Music from "../layout/Music"
+import Ad from "../layout/Ad"
+// import axios from "axios"
 
-Vue.use(Router);  
+Vue.use(Router);
 
 export default new Router({
   routes: [
@@ -25,10 +25,16 @@ export default new Router({
       name: 'Myfooter',
       component: Myfooter
     },
+    // {
+      // path: '/Ad',
+      // name: 'Ad',
+      // component: Ad
+    // },
     {
       path: '/First',
       name: 'First',
-      component: First
+      component: First,
+      props:true
     },
     {
       path: '/Reg',
@@ -55,7 +61,7 @@ export default new Router({
       children:[
         // 子一级：子级组件是展示在父级组件里面的router-view
         {
-          path:'TypeList/:type', //匹配的是 /ShuJia/TypeList
+          path:'TypeList/:type',
           name:'TypeList',
           component:TypeList,
           props:true
@@ -73,21 +79,19 @@ export default new Router({
       component: My
     },
     {
-      path: '/Reg1',
-      name: 'Reg1',
-      component: Reg1
+      path: '/Log',
+      name: 'Log',
+      component: Log
     },
     {
-      path: '/Login',
-      name: 'Login',
-      component:Login 
+      path: '/Music',
+      name: 'Music',
+      component: Music
     },
     {
-      path: '/Registered',
-      name: 'Registered',
-      component: Registered
+      path: '*',
+      name: 'Notfound',
+      component: Notfound
     },
   ]
 })
-
-
